@@ -51,14 +51,6 @@ module FFMPEG
     @ffmpeg_binary || which('ffmpeg')
   end
 
-  # Get the path to the ffprobe binary, defaulting to what is on ENV['PATH']
-  #
-  # @return [String] the path to the ffprobe binary
-  # @raise Errno::ENOENT if the ffprobe binary cannot be found
-  def self.ffprobe_binary
-    @ffprobe_binary || which('ffprobe')
-  end
-
   # Set the path of the ffprobe binary.
   # Can be useful if you need to specify a path such as /usr/local/bin/ffprobe
   #
@@ -70,6 +62,14 @@ module FFMPEG
       raise Errno::ENOENT, "the ffprobe binary, \'#{bin}\', is not executable"
     end
     @ffprobe_binary = bin
+  end
+
+  # Get the path to the ffprobe binary, defaulting to what is on ENV['PATH']
+  #
+  # @return [String] the path to the ffprobe binary
+  # @raise Errno::ENOENT if the ffprobe binary cannot be found
+  def self.ffprobe_binary
+    @ffprobe_binary || which('ffprobe')
   end
 
   # Get the maximum number of http redirect attempts
